@@ -1,3 +1,9 @@
+## About this repo
+
+This is a fork of this original work: <https://github.com/jinzhu/configor>
+
+This fork fixes an issue with a deprecated function in the yaml package (yaml.UnmarshalStrict), that made the original package impossible to use.
+
 # Configor
 
 Golang Configuration tool that support YAML, JSON, TOML, Shell Environment
