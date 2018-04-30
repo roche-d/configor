@@ -98,9 +98,6 @@ func processFile(config interface{}, file string, errorOnUnmatchedKeys bool) err
 
 	switch {
 	case strings.HasSuffix(file, ".yaml") || strings.HasSuffix(file, ".yml"):
-		if errorOnUnmatchedKeys {
-			return yaml.UnmarshalStrict(data, config)
-		}
 		return yaml.Unmarshal(data, config)
 	case strings.HasSuffix(file, ".toml"):
 		return unmarshalToml(data, config, errorOnUnmatchedKeys)
@@ -118,12 +115,7 @@ func processFile(config interface{}, file string, errorOnUnmatchedKeys bool) err
 			return nil
 		}
 
-		var yamlError error
-		if errorOnUnmatchedKeys {
-			yamlError = yaml.UnmarshalStrict(data, config)
-		} else {
-			yamlError = yaml.Unmarshal(data, config)
-		}
+		yamlError := yaml.Unmarshal(data, config)
 
 		if yamlError == nil {
 			return nil

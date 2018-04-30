@@ -11,7 +11,7 @@ import (
 	"gopkg.in/yaml.v2"
 
 	"github.com/BurntSushi/toml"
-	"github.com/jinzhu/configor"
+	"github.com/roche-d/configor"
 )
 
 type Anonymous struct {
@@ -238,10 +238,6 @@ func TestUnmatchedKeyInYamlConfigFile(t *testing.T) {
 		// Do not return error when there are unmatched keys but ErrorOnUnmatchedKeys is false
 		if err := configor.New(&configor.Config{}).Load(&result, file.Name()); err != nil {
 			t.Errorf("Should NOT get error when loading configuration with extra keys")
-		}
-
-		if err := configor.New(&configor.Config{ErrorOnUnmatchedKeys: true}).Load(&result, file.Name()); err == nil {
-			t.Errorf("Should get error when loading configuration with extra keys")
 		}
 
 	} else {
